@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A todo app in Express/Node</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h1>Your ToDo List...</h1>
+          <form class="form-inline" action="/addItem" method="post">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="New Task" name="newTask" />
+              </div>
+              <div class="input-group">
+                <input type="date" class="form-control" name="newTaskDate" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add New Task</button>
+          </form>          
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col-sm-12">
+            <table class="table">
+              <tr>
+                <th>Task Name</th>
+                <th>Task Due Date</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            <% for(let i = 0; i<taskArray.length; i++) { %>
+              <tr>
+                <td><%= taskArray[i].taskName %></td>
+                <td><%= taskArray[i].taskDate %></td>
+                <td>
+                  <a href="/edit/<%= taskArray[i].id %>">
+                    <button class="btn btn-warning">Edit</button>
+                  </a>
+                </td>
+    
+                <td>
+                  <a href="/delete/<%= taskArray[i].id %>">
+                    <button class="btn btn-danger">Delete</button>
+                  </a>
+                </td>	
+              </tr>
+            <% } %>
+            </table>
+          </div>
+        </div>      
+
+    </div>
+  </body>
+</html>
